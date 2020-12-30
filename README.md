@@ -48,6 +48,12 @@ about missing libraries.
   I have not found a way to generate an executable directly from the LLVM bindings, so I had to
   call out to `gcc` to do this.
 
+- [src/expr/](src/expr/)
+
+  The world's worst expression parser/compiler. Read an expression (which can only exist of one
+  positive integer followed by a `+` or `-` followed by another positive integer, all without any
+  whitespace) from a file and compile a program that executes the expression and prints the result.
+
 ## Resources
 
 - The "Add" example borrows heavily from [An introduction to LLVM in Go](https://felixangell.com/blogs/an-introduction-to-llvm-in-go).
