@@ -3,7 +3,9 @@
 Here I'm collecting some sample code I wrote while playing around with the Golang bindings for
 LLVM, as they may help others get started.
 
-## Setup
+## LLVM C Bindings
+
+### Setup
 
 I'm using Ubuntu 18.04 and Go 1.14.9 on a system that I've used for development for some time
 already, so I've no idea which dependencies are required, as most of them were installed already.
@@ -29,7 +31,7 @@ version in the Ubuntu repository was too old.
 Note: I had to *uninstall* ninja-build, as I couldn't get this to build the project without errors
 about missing libraries.
 
-## Examples
+### Examples
 
 - [src/add/main.go](src/add/main.go)
 
@@ -54,7 +56,35 @@ about missing libraries.
   positive integer followed by a `+` or `-` followed by another positive integer, all without any
   whitespace) from a file and compile a program that executes the expression and prints the result.
 
-## Resources
+### Resources
 
 - The "Add" example borrows heavily from [An introduction to LLVM in Go](https://felixangell.com/blogs/an-introduction-to-llvm-in-go).
 - The "Hello" example takes some inspiration from [llvm-hello-world](https://github.com/dfellis/llvm-hello-world).
+
+## LLIR
+
+A library for interacting with LLVM IR in pure Go.
+
+### Setup
+
+`go get -u github.com/llir/llvm/...`
+
+### Examples
+
+- [src/hello-ir/main.go](src/hello-ir/main.go)
+
+  Generate a new module using the Go `llir/llvm` library that defines a global constant
+  "Hello, world!" and a `main` function that prints the string using `puts`. Write the LL for
+  this module to the current working directory.
+
+  To create an executable, the easiest way is to use clang:
+
+  ```bash
+  $ go run main.go
+  $ clang -i hello hello.ll
+  ```
+
+### Resources
+
+- [LLVM IR and Go](https://blog.gopheracademy.com/advent-2018/llvm-ir-and-go/).
+- [llir/llvm documentation](https://llir.github.io/document/).
